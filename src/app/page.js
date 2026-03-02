@@ -22,10 +22,8 @@ export default function LandingPage() {
       <Navbar />
       <Hero onStart={scrollToCTA} />
       <Tentang />
-      <StatsBar />
       <Materi />
       <MMSEInfo />
-      <Fitur />
       <Galeri />
       <CTA  />
       <Footer />
