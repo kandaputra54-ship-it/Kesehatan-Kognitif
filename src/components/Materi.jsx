@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export default function Materi() {
   const [hovered, setHovered] = useState(null);
+  const [playingVideo, setPlayingVideo] = useState(null);
 
   const modulData = [
     {
@@ -33,7 +34,7 @@ export default function Materi() {
       desc: "Interaksi sosial melalui diskusi dan permainan memori untuk mencegah penurunan fungsi otak.",
       detail: "Pendekatan kolaboratif ini memberikan dukungan psikososial yang kuat sekaligus memperlambat proses degeneratif kognitif.",
       img: "/modul3.jpeg",
-      video: "https://www.youtube.com/watch?v=JJlYmXmvlSI",
+      video: "https://drive.google.com/file/d/1c_AzrsZDf7gOsqvkafT3mIXXVYYtaxeu/preview",
       tag: "Sosial",
     },
   ];
@@ -44,7 +45,6 @@ export default function Materi() {
       className="relative py-32 bg-[var(--color-background)] border-t border-stone-200 overflow-hidden"
       style={{ fontFamily: "var(--font-body)" }}
     >
-      {/* Subtle grid texture overlay */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.025]"
         style={{
@@ -54,7 +54,6 @@ export default function Materi() {
       />
 
       <div className="relative max-w-6xl mx-auto px-6 md:px-12">
-
         {/* Header */}
         <div className="mb-28">
           <p
@@ -76,8 +75,6 @@ export default function Materi() {
               Tiga modul terstruktur untuk mendukung kesehatan otak dan kebugaran fungsional usia matang.
             </p>
           </div>
-
-          {/* Divider accent */}
           <div className="mt-12 flex items-center gap-4">
             <div className="h-px flex-1 bg-stone-300" />
             <span className="text-stone-400 text-xs tracking-widest" style={{ fontFamily: "var(--font-mono)" }}>3 MODUL</span>
@@ -96,9 +93,7 @@ export default function Materi() {
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
             >
-              {/* Image Block */}
               <div className="w-full md:w-[52%] relative">
-                {/* Large numbered backdrop */}
                 <span
                   className="absolute -top-8 -left-4 text-[120px] md:text-[160px] font-black leading-none select-none pointer-events-none transition-all duration-500"
                   style={{
@@ -126,8 +121,6 @@ export default function Materi() {
                     fill
                     className="object-cover transition-transform duration-1000 group-hover:scale-105"
                   />
-
-                  {/* Gradient overlay */}
                   <div
                     className="absolute inset-0 transition-opacity duration-700"
                     style={{
@@ -135,16 +128,12 @@ export default function Materi() {
                       opacity: hovered === i ? 1 : 0,
                     }}
                   />
-
-                  {/* Tag badge */}
                   <div
                     className="absolute bottom-6 left-6 px-4 py-1.5 rounded-full text-white text-xs font-bold tracking-widest uppercase"
                     style={{ backgroundColor: "var(--color-primary)" }}
                   >
                     {modul.tag}
                   </div>
-
-                  {/* Modul label */}
                   <div
                     className="absolute top-6 right-6 bg-white/80 backdrop-blur-sm font-black px-4 py-1.5 rounded-xl text-xs tracking-widest shadow"
                     style={{ color: "var(--color-dark-gray)", fontFamily: "var(--font-mono)" }}
@@ -154,10 +143,7 @@ export default function Materi() {
                 </div>
               </div>
 
-              {/* Content Block */}
               <div className="w-full md:w-[48%] flex flex-col justify-center space-y-7">
-
-                {/* Title */}
                 <div>
                   <p
                     className="text-sm tracking-widest uppercase mb-2 transition-colors duration-300"
@@ -176,7 +162,6 @@ export default function Materi() {
                   </h3>
                 </div>
 
-                {/* Accent rule */}
                 <div
                   className="h-0.5 rounded-full transition-all duration-500"
                   style={{
@@ -185,7 +170,6 @@ export default function Materi() {
                   }}
                 />
 
-                {/* Description */}
                 <p
                   className="text-lg font-semibold leading-relaxed"
                   style={{ color: "var(--color-primary)" }}
@@ -196,12 +180,9 @@ export default function Materi() {
                   {modul.detail}
                 </p>
 
-                {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-4 pt-2">
-                  <a
-                    href={modul.video}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={() => setPlayingVideo(modul.video)}
                     className="inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl text-white font-bold text-sm transition-all duration-300 active:scale-95"
                     style={{
                       backgroundColor: "var(--color-primary)",
@@ -212,7 +193,7 @@ export default function Materi() {
                       ▶
                     </span>
                     Tonton Video Panduan
-                  </a>
+                  </button>
                   <button
                     onClick={() => alert("Leaflet tersedia melalui fasilitator.")}
                     className="px-7 py-3.5 rounded-2xl font-bold text-sm border-2 border-stone-200 hover:border-stone-400 transition-all duration-300 bg-white active:scale-95"
@@ -226,12 +207,37 @@ export default function Materi() {
           ))}
         </div>
 
-        {/* Footer note */}
         <div className="mt-28 pt-10 border-t border-stone-200 flex flex-col md:flex-row items-center justify-between gap-4 text-sm" style={{ color: "#9CA3AF" }}>
           <span className="tracking-widest text-xs uppercase" style={{ fontFamily: "var(--font-mono)" }}>Program Stimulasi Kognitif</span>
           <span>Dikembangkan berdasarkan panduan WHO & evidence-based practice</span>
         </div>
       </div>
+
+      {/* Video Modal Overlay */}
+      {playingVideo && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
+          onClick={() => setPlayingVideo(null)}
+        >
+          <div 
+            className="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 z-[110] text-white bg-white/20 hover:bg-white/40 w-10 h-10 rounded-full transition-colors"
+              onClick={() => setPlayingVideo(null)}
+            >
+              ✕
+            </button>
+            <iframe
+              src={playingVideo}
+              className="w-full h-full"
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

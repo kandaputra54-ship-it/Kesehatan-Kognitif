@@ -6,7 +6,7 @@ export default function Hero({ onStart }) {
       {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/1.jpeg"
+          src="/galeri/6.jpeg"
           alt="Kegiatan aktivitas fisik"
           fill
           priority
