@@ -39,7 +39,7 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-6xl mx-auto px-8 h-20 flex items-center justify-between">
-
+          {/* Logo */}
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
@@ -48,9 +48,11 @@ export default function Navbar() {
             <span className="w-6 h-px bg-primary transition-all duration-300 group-hover:w-10"></span>
             <span
               style={{ fontFamily: "var(--font-display)" }}
-              className={`font-bold text-lg italic tracking-tight transition-colors duration-300 ${scrolled ? "text-dark-gray" : "text-white"}`}
+              className={`font-bold text-2xl italic tracking-tighter transition-colors duration-300 ${
+                scrolled ? "text-dark-gray" : "text-white"
+              }`}
             >
-              Kognitif<span className="text-primary not-italic">.Life</span>
+              Sibo<span className="text-primary not-italic">.web.id</span>
             </span>
           </button>
 
@@ -83,9 +85,15 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
-            <span className={`block w-6 h-px transition-all duration-300 ${scrolled ? "bg-dark-gray" : "bg-white"} ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
-            <span className={`block w-6 h-px transition-all duration-300 ${scrolled ? "bg-dark-gray" : "bg-white"} ${menuOpen ? "opacity-0" : ""}`}></span>
-            <span className={`block w-6 h-px transition-all duration-300 ${scrolled ? "bg-dark-gray" : "bg-white"} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
+            <span
+              className={`block w-6 h-px transition-all duration-300 ${scrolled ? "bg-dark-gray" : "bg-white"} ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+            ></span>
+            <span
+              className={`block w-6 h-px transition-all duration-300 ${scrolled ? "bg-dark-gray" : "bg-white"} ${menuOpen ? "opacity-0" : ""}`}
+            ></span>
+            <span
+              className={`block w-6 h-px transition-all duration-300 ${scrolled ? "bg-dark-gray" : "bg-white"} ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            ></span>
           </button>
         </div>
       </nav>
@@ -93,7 +101,9 @@ export default function Navbar() {
       {/* Mobile drawer */}
       <div
         className={`fixed inset-0 z-40 bg-dark-gray transition-opacity duration-400 md:hidden ${
-          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
       >
         <div className="flex flex-col justify-center items-center h-full gap-10">
@@ -108,7 +118,13 @@ export default function Navbar() {
             </button>
           ))}
           <button
-            onClick={() => { window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }); setMenuOpen(false); }}
+            onClick={() => {
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              });
+              setMenuOpen(false);
+            }}
             className="mt-4 bg-primary text-white px-10 py-3.5 rounded-xl font-semibold text-base"
           >
             Mulai Sekarang

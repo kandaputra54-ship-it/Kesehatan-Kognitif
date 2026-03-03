@@ -21,16 +21,34 @@ const dmMono = DM_Mono({
 });
 
 export const metadata = {
-  title: "Kognitif.Life — Stimulasi Kognitif untuk Usia Matang",
+  title: "SIBO — Sistem Intervensi Berbasis Online Pam",
   description:
-    "Program stimulasi kognitif berbasis evidence untuk menjaga kesehatan otak dan kebugaran fungsional usia matang. Didukung panduan WHO & evidence-based practice.",
-  keywords: ["kognitif", "senam otak", "lansia", "brain gym", "stimulasi kognitif", "kesehatan otak"],
-  authors: [{ name: "Kognitif.Life" }],
+    "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831). Program stimulasi kognitif berbasis evidence untuk menjaga kesehatan otak dan kebugaran fungsional usia matang.",
+  keywords: ["SIBO", "Sistem Intervensi Berbasis Online Pam", "kognitif", "senam otak", "lansia", "brain gym", "stimulasi kognitif", "kesehatan otak"],
+  authors: [{ name: "Ns. Ahmad Fahri, S.Kep.,M.Kep" }],
+  
   openGraph: {
-    title: "Kognitif.Life — Stimulasi Kognitif untuk Usia Matang",
-    description:
-      "Program stimulasi kognitif berbasis evidence untuk menjaga kesehatan otak dan kebugaran fungsional usia matang.",
+    title: "SIBO — Sistem Intervensi Berbasis Online Pam",
+    description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831). Program stimulasi kognitif berbasis evidence.",
     type: "website",
+    url: "https://sibo.web.id",
+    // TAMBAHKAN INI
+    images: [
+      {
+        url: "/og-sibo.jpeg", // Nama file di folder public
+        width: 1200,
+        height: 630,
+        alt: "SIBO - Sistem Intervensi Berbasis Online Pam",
+      },
+    ],
+  },
+
+  // TAMBAHKAN INI JUGA AGAR MUNCUL DI TWITTER/X
+  twitter: {
+    card: "summary_large_image",
+    title: "SIBO — Sistem Intervensi Berbasis Online Pam",
+    description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831).",
+    images: ["/og-sibo.png"],
   },
 };
 
