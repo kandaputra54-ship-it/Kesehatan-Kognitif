@@ -48,7 +48,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "SIBO — Sistem Intervensi Berbasis Online Pam",
     description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831).",
-    images: ["/og-sibo.png"],
+    images: ["/og-sibo.jpeg"],
   },
 };
 

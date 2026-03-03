@@ -9,18 +9,18 @@ const navLinks = [
 const kontakInfo = [
   {
     tag: "EMAIL",
-    value: "kognitiflife@gmail.com",
-    href: "mailto:kognitiflife@gmail.com",
+    value: "ahmadfahri238@gmail.com",
+    href: "mailto:ahmadfahri238@gmail.com",
   },
   {
     tag: "TELEPON",
-    value: "+62-211-1822-644",
-    href: "tel:+622111822644",
+    value: "+62-8181-0613-7179",
+    href: "tel:+6281806137179",
   },
   {
     tag: "WHATSAPP",
-    value: "+62-211-1822-644",
-    href: "https://wa.me/628111822644",
+    value: "+62-8181-0613-7179",
+    href: "https://wa.me/6281806137179",
   },
   {
     tag: "LOKASI",

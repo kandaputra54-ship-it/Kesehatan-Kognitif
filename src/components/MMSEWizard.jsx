@@ -47,7 +47,7 @@ const QUESTIONS = [
   },
   {
     cat: "REGISTRASI",
-    q: "Sebutkan 3 objek (Mawar, Kursi, Uang). Objek 1:",
+    q: "Sebutkan 3 objek , Objek 1:",
     type: "text",
   },
   { cat: "REGISTRASI", q: "Objek 2:", type: "text" },
@@ -253,7 +253,13 @@ export default function MMSEWizard({
     autoTable(doc, {
       startY: 100,
       head: [
-        ["No", "Kategori", "Pertanyaan / Instruksi", "Jawaban Responden", "Skor"],
+        [
+          "No",
+          "Kategori",
+          "Pertanyaan / Instruksi",
+          "Jawaban Responden",
+          "Skor",
+        ],
       ],
       body: tableRows,
       theme: "striped",
@@ -316,7 +322,11 @@ export default function MMSEWizard({
   };
 
   const handleJumpTo = (idx) => {
-    if (idx < currentQ && scores[idx] !== null) {
+    const firstUnanswered = scores.findIndex((s) => s === null);
+    const maxAllowed =
+      firstUnanswered === -1 ? QUESTIONS.length - 1 : firstUnanswered;
+
+    if (idx <= maxAllowed) {
       setCurrentQ(idx);
       setShowPanel(false);
     }
@@ -337,13 +347,19 @@ export default function MMSEWizard({
       `*HASIL AKHIR: ${totalScore}/30*%0A` +
       `*INTERPRETASI: ${interp.label}*%0A%0A` +
       `*DETAIL DATA:*%0A${detailJawaban}`;
-    window.open(`https://wa.me/6282129178771?text=${message}`, "_blank");
+    window.open(`https://wa.me/6281806137179    ?text=${message}`, "_blank");
   };
 
   // ---- NAV PANEL ----
   const NavPanel = () => {
     const categories = [...new Set(QUESTIONS.map((q) => q.cat))];
     const answeredCount = scores.filter((s) => s !== null).length;
+
+    // Logic: Cari index pertama yang belum diisi untuk menentukan batas maksimal navigasi
+    const firstUnanswered = scores.findIndex((s) => s === null);
+    const maxReachable =
+      firstUnanswered === -1 ? QUESTIONS.length - 1 : firstUnanswered;
+
     return (
       <div
         className="fixed inset-0 z-50 flex items-end justify-center"
@@ -398,32 +414,43 @@ export default function MMSEWizard({
                     {catQs.map(({ idx }) => {
                       const score = scores[idx];
                       const isActive = idx === currentQ;
-                      const isPast = idx < currentQ && score !== null;
-                      const isFuture = idx > currentQ;
+                      const isReachable = idx <= maxReachable;
+
                       let cls =
                         "w-9 h-9 rounded-xl text-[11px] font-black flex items-center justify-center transition-all select-none ";
-                      if (isActive)
+
+                      if (isActive) {
                         cls += `${color.bg} text-white ring-4 ring-offset-1 ${color.ring} ring-opacity-50 scale-110 shadow-lg`;
-                      else if (isPast)
+                      } else if (score !== null) {
+                        // Soal yang sudah dijawab
                         cls +=
                           score === 1
                             ? "bg-green-500 text-white shadow-sm cursor-pointer hover:scale-105 active:scale-95"
                             : "bg-red-400 text-white shadow-sm cursor-pointer hover:scale-105 active:scale-95";
-                      else
+                      } else if (isReachable) {
+                        // Soal antrean berikutnya (boleh diklik meskipun belum ada skor)
+                        cls +=
+                          "bg-white border-2 border-gray-200 text-gray-400 cursor-pointer hover:border-primary hover:text-primary active:scale-95";
+                      } else {
+                        // Soal yang masih terkunci jauh di depan
                         cls += "bg-gray-100 text-gray-300 cursor-not-allowed";
+                      }
+
                       return (
                         <button
                           key={idx}
                           ref={isActive ? activeRef : null}
                           className={cls}
-                          disabled={!isPast}
-                          onClick={() => isPast && handleJumpTo(idx)}
+                          disabled={!isReachable}
+                          onClick={() => isReachable && handleJumpTo(idx)}
                           title={
-                            isFuture
+                            !isReachable
                               ? "Selesaikan soal sebelumnya dulu"
                               : isActive
                                 ? "Soal aktif"
-                                : `Kembali ke soal ${idx + 1}`
+                                : score !== null
+                                  ? `Kembali ke soal ${idx + 1}`
+                                  : `Lanjut ke soal ${idx + 1}`
                           }
                         >
                           {idx + 1}
@@ -445,7 +472,6 @@ export default function MMSEWizard({
       </div>
     );
   };
-
   // ---- RESULT PAGE ----
   if (step === "result") {
     const totalScore = scores.reduce((a, b) => a + (b || 0), 0);
