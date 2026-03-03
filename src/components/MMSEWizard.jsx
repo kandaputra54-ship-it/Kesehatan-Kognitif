@@ -341,13 +341,24 @@ export default function MMSEWizard({
           `${i + 1}. ${QUESTIONS[i].q} -> [${ans || "-"}] Skor: ${scores[i]}`,
       )
       .join("%0A");
+
     const message =
       `*LAPORAN ${testType.toUpperCase()} MMSE*%0A%0A` +
       `*IDENTITAS*%0A Nama: ${userData.nama}%0A Usia: ${userData.usia}%0A Gender: ${userData.gender}%0A%0A` +
       `*HASIL AKHIR: ${totalScore}/30*%0A` +
       `*INTERPRETASI: ${interp.label}*%0A%0A` +
       `*DETAIL DATA:*%0A${detailJawaban}`;
-    window.open(`https://wa.me/6281806137179    ?text=${message}`, "_blank");
+
+    const url = `https://wa.me/6281806137179?text=${message}`;
+
+    // Cara paling aman untuk force tab baru
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // ---- NAV PANEL ----

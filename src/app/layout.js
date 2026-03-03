@@ -35,7 +35,7 @@ export const metadata = {
     // TAMBAHKAN INI
     images: [
       {
-        url: "/og-sibo.jpeg", // Nama file di folder public
+        url: "/og-image.jpeg", // Nama file di folder public
         width: 1200,
         height: 630,
         alt: "SIBO - Sistem Intervensi Berbasis Online Pam",
@@ -48,7 +48,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "SIBO — Sistem Intervensi Berbasis Online Pam",
     description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831).",
-    images: ["/og-sibo.jpeg"],
+    images: ["/og-image.jpeg"],
   },
 };
 
