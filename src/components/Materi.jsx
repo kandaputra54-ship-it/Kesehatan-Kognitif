@@ -5,23 +5,31 @@ import { useState } from "react";
 export default function Materi() {
   const [hovered, setHovered] = useState(null);
   const [playingVideo, setPlayingVideo] = useState(null);
+  
+  // State viewingLeaflet sekarang menyimpan object modul lengkap, bukan hanya ID
   const [viewingLeaflet, setViewingLeaflet] = useState(null);
+  const [currentLeafletIndex, setCurrentLeafletIndex] = useState(0);
 
   const modulData = [
-      {
-        no: "01",
-        title: "Senam Otak",
-        subtitle: "Brain Gym",
-        desc: "Optimalisasi fungsi kognitif melalui gerakan terarah seperti cross crawl dan lazy 8.",
-        detail:
-          "Meningkatkan konsentrasi, koordinasi motorik, dan daya ingat jangka pendek secara signifikan.",
-        img: "/modul1.jpeg",
-        video:
-          "https://drive.google.com/file/d/1c_AzrsZDf7gOsqvkafT3mIXXVYYtaxeu/preview",
-        leafletId: "1gdqQGqrGBsrgz0x6CbKKqRzugInvis9u",
-        tag: "Kognitif",
-        hasVideo: true,
-      },
+    {
+      no: "01",
+      title: "Senam Otak",
+      subtitle: "Brain Gym",
+      desc: "Optimalisasi fungsi kognitif melalui gerakan terarah seperti cross crawl dan lazy 8.",
+      detail:
+        "Meningkatkan konsentrasi, koordinasi motorik, dan daya ingat jangka pendek secara signifikan.",
+      img: "/modul1.jpeg",
+      video:
+        "https://drive.google.com/file/d/1c_AzrsZDf7gOsqvkafT3mIXXVYYtaxeu/preview",
+      // Menggunakan link direct image agar bisa dirender komponen Image Next.js
+      leafletId: [
+        "1YvhvbDy7rt5y0MZgw8zvsULsqtWMunss",
+        "1gdqQGqrGBsrgz0x6CbKKqRzugInvis9u", 
+        
+      ],
+      tag: "Kognitif",
+      hasVideo: true,
+    },
     {
       no: "02",
       title: "Terapi Fisik",
@@ -32,7 +40,7 @@ export default function Materi() {
       img: "/modul2.jpeg",
       video:
         "https://drive.google.com/file/d/1-GtEmH3bhTGtejm2OO9Ncahfn49a9R7v/preview",
-      leafletId: "132oQGVfA8KMtabSc7JWEb4LkVp8Q7ylK",
+      leafletId: ["132oQGVfA8KMtabSc7JWEb4LkVp8Q7ylK"],
       tag: "Fisik",
       hasVideo: true,
     },
@@ -44,11 +52,28 @@ export default function Materi() {
       detail:
         "Pendekatan kolaboratif ini memberikan dukungan psikososial yang kuat bagi lansia.",
       img: "/modul3.jpeg",
-      leafletId: "19AVAxM5BvR-y2pNdJYD3f_f87-W4KLjp", // ID BARU SUDAH TERPASANG
+      leafletId: ["19AVAxM5BvR-y2pNdJYD3f_f87-W4KLjp"],
       tag: "Sosial",
       hasVideo: false,
     },
   ];
+
+  // Helper fungsi navigasi
+  const nextSlide = (e) => {
+    e?.stopPropagation();
+    if (!viewingLeaflet || !Array.isArray(viewingLeaflet.leafletId)) return;
+    setCurrentLeafletIndex((prev) => 
+      prev === viewingLeaflet.leafletId.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const prevSlide = (e) => {
+    e?.stopPropagation();
+    if (!viewingLeaflet || !Array.isArray(viewingLeaflet.leafletId)) return;
+    setCurrentLeafletIndex((prev) => 
+      prev === 0 ? viewingLeaflet.leafletId.length - 1 : prev - 1
+    );
+  };
 
   return (
     <section
@@ -185,18 +210,18 @@ export default function Materi() {
                   )}
 
                   <button
-                    onClick={() =>
-                      setViewingLeaflet(
-                        `https://drive.google.com/file/d/${modul.leafletId}/preview`,
-                      )
-                    }
+                    onClick={() => {
+                      // Simpan object modul, bukan link
+                      setViewingLeaflet(modul);
+                      setCurrentLeafletIndex(0);
+                    }}
                     className="px-6 py-3.5 rounded-2xl font-bold text-sm border-2 border-stone-200 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all duration-300 bg-white active:scale-95"
                   >
                     Lihat Leaflet
                   </button>
 
                   <a
-                    href={`https://drive.google.com/uc?export=download&id=${modul.leafletId}`}
+                    href={`https://drive.google.com/uc?export=download&id=${modul.leafletId[0]}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-stone-100 text-stone-600 hover:bg-stone-200 transition-all duration-300 active:scale-95"
@@ -210,7 +235,7 @@ export default function Materi() {
         </div>
       </div>
 
-      {/* --- MODAL VIDEO --- */}
+      {/* --- MODAL VIDEO (TIDAK BERUBAH) --- */}
       {playingVideo && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4"
@@ -236,31 +261,109 @@ export default function Materi() {
         </div>
       )}
 
-      {/* --- MODAL LEAFLET FULLSCREEN --- */}
+      {/* --- MODAL LEAFLET MODERN UI --- */}
       {viewingLeaflet && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-stone-900/95 p-0 md:p-6"
+          className="fixed inset-0 z-[100] flex flex-col bg-stone-950/98 backdrop-blur-sm animate-fadeIn"
           onClick={() => setViewingLeaflet(null)}
         >
-          <div
-            className="relative w-full h-full max-w-5xl bg-white md:rounded-3xl overflow-hidden shadow-2xl flex flex-col"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-4 border-b flex justify-between items-center bg-white">
-              <h4 className="font-bold text-gray-800 ml-4">Leaflet Edukasi</h4>
+          {/* Header Modal */}
+          <div className="w-full p-4 flex justify-between items-center border-b border-stone-800 bg-stone-950 relative z-10">
+            <div className="flex flex-col ml-4">
+              <h4 className="font-bold text-white text-lg">
+                Leaflet: {viewingLeaflet.title}
+              </h4>
+              <p className="text-xs text-stone-400 font-mono">
+                Modul {viewingLeaflet.no} ✦ Halaman {currentLeafletIndex + 1} dari {viewingLeaflet.leafletId.length}
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              {/* Tombol Download Link Aktif */}
+              <a
+                href={`https://drive.google.com/uc?export=download&id=${viewingLeaflet.leafletId[currentLeafletIndex]}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="px-5 py-2.5 rounded-xl bg-stone-800 text-stone-200 font-bold text-xs hover:bg-stone-700 transition-all"
+              >
+                ↓ Download Halaman Ini
+              </a>
               <button
                 onClick={() => setViewingLeaflet(null)}
-                className="px-5 py-2 rounded-xl bg-stone-100 text-stone-600 font-bold text-sm hover:bg-stone-200"
+                className="w-11 h-11 flex items-center justify-center rounded-full bg-stone-800 text-stone-400 hover:bg-red-500 hover:text-white transition-all active:scale-95"
               >
-                Tutup
+                ✕
               </button>
             </div>
-            <div className="flex-1 bg-stone-200">
-              <iframe src={viewingLeaflet} className="w-full h-full"></iframe>
+          </div>
+
+          {/* Area Konten Foto & Navigasi */}
+          <div className="flex-1 relative flex items-center justify-center p-4 md:p-8 group">
+            {/* Foto Leaflet */}
+            <div className="relative w-full h-full max-w-4xl shadow-2xl rounded-2xl overflow-hidden border border-stone-800 bg-black">
+              <Image
+                // Trik menampilkan image direct dari drive ID
+                src={`https://drive.google.com/uc?id=${viewingLeaflet.leafletId[currentLeafletIndex]}`}
+                alt={`Leaflet ${viewingLeaflet.title} halaman ${currentLeafletIndex + 1}`}
+                fill
+                priority
+                className="object-contain" // Foto utuh tidak terpotong
+                sizes="(max-width: 1024px) 100vw, 1024px"
+              />
+              
+              {/* Overlay Navigasi (Hanya muncul jika > 1 halaman) */}
+              {viewingLeaflet.leafletId.length > 1 && (
+                <>
+                  {/* Area klik kiri */}
+                  <div 
+                    className="absolute inset-y-0 left-0 w-1/2 flex items-center justify-start p-4 cursor-pointer z-10"
+                    onClick={prevSlide}
+                  >
+                    <button className="w-14 h-14 rounded-full bg-black/30 backdrop-blur-md text-white border border-white/10 flex items-center justify-center text-2xl font-mono shadow-xl opacity-0 group-hover:opacity-100 md:group-hover:opacity-100 transition-all hover:bg-white/20 hover:scale-110 -translate-x-10 group-hover:translate-x-0">
+                      ‹
+                    </button>
+                  </div>
+                  
+                  {/* Area klik kanan */}
+                  <div 
+                    className="absolute inset-y-0 right-0 w-1/2 flex items-center justify-end p-4 cursor-pointer z-10"
+                    onClick={nextSlide}
+                  >
+                    <button className="w-14 h-14 rounded-full bg-black/30 backdrop-blur-md text-white border border-white/10 flex items-center justify-center text-2xl font-mono shadow-xl opacity-0 group-hover:opacity-100 md:group-hover:opacity-100 transition-all hover:bg-white/20 hover:scale-110 translate-x-10 group-hover:translate-x-0">
+                      ›
+                    </button>
+                  </div>
+
+                  {/* Indikator Dots Bawah */}
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2.5 p-2 rounded-full bg-black/40 backdrop-blur-sm border border-white/10">
+                    {viewingLeaflet.leafletId.map((_, dotIndex) => (
+                      <button
+                        key={dotIndex}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentLeafletIndex(dotIndex);
+                        }}
+                        className={`h-2.5 rounded-full transition-all duration-300 ${currentLeafletIndex === dotIndex ? "w-8 bg-[var(--color-primary)]" : "w-2.5 bg-white/40 hover:bg-white/70"}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
       )}
+
+      {/* Tailwind CSS Simple Animation */}
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out forwards;
+        }
+      `}</style>
     </section>
   );
 }
