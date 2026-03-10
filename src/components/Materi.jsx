@@ -8,20 +8,20 @@ export default function Materi() {
   const [viewingLeaflet, setViewingLeaflet] = useState(null);
 
   const modulData = [
-    {
-      no: "01",
-      title: "Senam Otak",
-      subtitle: "Brain Gym",
-      desc: "Optimalisasi fungsi kognitif melalui gerakan terarah seperti cross crawl dan lazy 8.",
-      detail:
-        "Meningkatkan konsentrasi, koordinasi motorik, dan daya ingat jangka pendek secara signifikan.",
-      img: "/modul1.jpeg",
-      video:
-        "https://drive.google.com/file/d/1c_AzrsZDf7gOsqvkafT3mIXXVYYtaxeu/preview",
-      leafletId: "1gdqQGqrGBsrgz0x6CbKKqRzugInvis9u",
-      tag: "Kognitif",
-      hasVideo: true,
-    },
+      {
+        no: "01",
+        title: "Senam Otak",
+        subtitle: "Brain Gym",
+        desc: "Optimalisasi fungsi kognitif melalui gerakan terarah seperti cross crawl dan lazy 8.",
+        detail:
+          "Meningkatkan konsentrasi, koordinasi motorik, dan daya ingat jangka pendek secara signifikan.",
+        img: "/modul1.jpeg",
+        video:
+          "https://drive.google.com/file/d/1c_AzrsZDf7gOsqvkafT3mIXXVYYtaxeu/preview",
+        leafletId: "1gdqQGqrGBsrgz0x6CbKKqRzugInvis9u",
+        tag: "Kognitif",
+        hasVideo: true,
+      },
     {
       no: "02",
       title: "Terapi Fisik",
@@ -31,7 +31,7 @@ export default function Materi() {
         "Sesuai rekomendasi WHO, aktivitas 150 menit per minggu membantu menjaga keseimbangan tubuh.",
       img: "/modul2.jpeg",
       video:
-        "https://drive.google.com/file/d/132oQGVfA8KMtabSc7JWEb4LkVp8Q7ylK/preview",
+        "https://drive.google.com/file/d/1-GtEmH3bhTGtejm2OO9Ncahfn49a9R7v/preview",
       leafletId: "132oQGVfA8KMtabSc7JWEb4LkVp8Q7ylK",
       tag: "Fisik",
       hasVideo: true,
