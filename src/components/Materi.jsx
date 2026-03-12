@@ -1,14 +1,17 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import PdfViewer from "./PdfViewer";
 
 export default function Materi() {
   const [hovered, setHovered] = useState(null);
   const [playingVideo, setPlayingVideo] = useState(null);
-  
+
   // State viewingLeaflet sekarang menyimpan object modul lengkap, bukan hanya ID
   const [viewingLeaflet, setViewingLeaflet] = useState(null);
   const [currentLeafletIndex, setCurrentLeafletIndex] = useState(0);
+
+  const [viewingPdf, setViewingPdf] = useState(null);
 
   const modulData = [
     {
@@ -21,12 +24,9 @@ export default function Materi() {
       img: "/modul1.jpeg",
       video:
         "https://drive.google.com/file/d/1c_AzrsZDf7gOsqvkafT3mIXXVYYtaxeu/preview",
-      // Menggunakan link direct image agar bisa dirender komponen Image Next.js
-      leafletId: [
-        "1YvhvbDy7rt5y0MZgw8zvsULsqtWMunss",
-        "1gdqQGqrGBsrgz0x6CbKKqRzugInvis9u", 
-        
-      ],
+      leafletId: ["1YvhvbDy7rt5y0MZgw8zvsULsqtWMunss"],
+      pdfUrl:
+        "https://drive.google.com/file/d/1JrPTDtGVw8kSOrjVHppq0EvUJ-5vVbDF/preview",
       tag: "Kognitif",
       hasVideo: true,
     },
@@ -62,16 +62,16 @@ export default function Materi() {
   const nextSlide = (e) => {
     e?.stopPropagation();
     if (!viewingLeaflet || !Array.isArray(viewingLeaflet.leafletId)) return;
-    setCurrentLeafletIndex((prev) => 
-      prev === viewingLeaflet.leafletId.length - 1 ? 0 : prev + 1
+    setCurrentLeafletIndex((prev) =>
+      prev === viewingLeaflet.leafletId.length - 1 ? 0 : prev + 1,
     );
   };
 
   const prevSlide = (e) => {
     e?.stopPropagation();
     if (!viewingLeaflet || !Array.isArray(viewingLeaflet.leafletId)) return;
-    setCurrentLeafletIndex((prev) => 
-      prev === 0 ? viewingLeaflet.leafletId.length - 1 : prev - 1
+    setCurrentLeafletIndex((prev) =>
+      prev === 0 ? viewingLeaflet.leafletId.length - 1 : prev - 1,
     );
   };
 
@@ -208,7 +208,17 @@ export default function Materi() {
                       Video Panduan
                     </button>
                   )}
-
+                  {/* 4. TOMBOL BARU UNTUK PDF (Hanya jika pdfUrl ada) */}
+                  {modul.pdfUrl && (
+                    <button
+                      onClick={() =>
+                        setViewingPdf({ url: modul.pdfUrl, title: modul.title })
+                      }
+                      className="px-6 py-3.5 rounded-2xl font-bold text-sm bg-indigo-50 text-[var(--color-primary)] border border-indigo-100 hover:bg-indigo-100 transition-all duration-300 active:scale-95"
+                    >
+                      📖 Baca Materi
+                    </button>
+                  )}
                   <button
                     onClick={() => {
                       // Simpan object modul, bukan link
@@ -274,7 +284,8 @@ export default function Materi() {
                 Leaflet: {viewingLeaflet.title}
               </h4>
               <p className="text-xs text-stone-400 font-mono">
-                Modul {viewingLeaflet.no} ✦ Halaman {currentLeafletIndex + 1} dari {viewingLeaflet.leafletId.length}
+                Modul {viewingLeaflet.no} ✦ Halaman {currentLeafletIndex + 1}{" "}
+                dari {viewingLeaflet.leafletId.length}
               </p>
             </div>
             <div className="flex items-center gap-3">
@@ -310,12 +321,12 @@ export default function Materi() {
                 className="object-contain" // Foto utuh tidak terpotong
                 sizes="(max-width: 1024px) 100vw, 1024px"
               />
-              
+
               {/* Overlay Navigasi (Hanya muncul jika > 1 halaman) */}
               {viewingLeaflet.leafletId.length > 1 && (
                 <>
                   {/* Area klik kiri */}
-                  <div 
+                  <div
                     className="absolute inset-y-0 left-0 w-1/2 flex items-center justify-start p-4 cursor-pointer z-10"
                     onClick={prevSlide}
                   >
@@ -323,9 +334,9 @@ export default function Materi() {
                       ‹
                     </button>
                   </div>
-                  
+
                   {/* Area klik kanan */}
-                  <div 
+                  <div
                     className="absolute inset-y-0 right-0 w-1/2 flex items-center justify-end p-4 cursor-pointer z-10"
                     onClick={nextSlide}
                   >
@@ -357,13 +368,26 @@ export default function Materi() {
       {/* Tailwind CSS Simple Animation */}
       <style jsx global>{`
         @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
         }
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out forwards;
         }
       `}</style>
+
+      {/* 5. Panggil Komponen PdfViewer di paling bawah */}
+      <PdfViewer
+        isOpen={!!viewingPdf}
+        onClose={() => setViewingPdf(null)}
+        pdfUrl={viewingPdf?.url || ""}
+        title={viewingPdf?.title || ""}
+      />
+
     </section>
   );
 }

@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import Tentang from "@/components/Tentang";
 import Materi from "@/components/Materi";
 import MMSEInfo from "@/components/MMSEInfo";
+import Tutorial from "@/components/Tutorial";
 import Galeri from "@/components/Galeri";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
@@ -41,6 +42,7 @@ export default function LandingPage() {
           <Navbar />
           <Hero onStart={scrollToCTA} />
           <Tentang />
+          <Tutorial />
           <Materi />
           <MMSEInfo />
           <Galeri />
