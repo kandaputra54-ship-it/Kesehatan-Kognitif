@@ -11,12 +11,7 @@ const misi = [
   
 ];
 
-const stats = [
-  { value: "200+", label: "Peserta Aktif" },
-  { value: "12", label: "Sesi Per Bulan" },
-  { value: "3", label: "Tahun Berjalan" },
-  { value: "95%", label: "Tingkat Kepuasan" },
-];
+
 
 export default function Tentang() {
   return (
@@ -82,19 +77,7 @@ export default function Tentang() {
           ))}
         </div>
 
-        {/* Stats bar */}
-        <div className="mt-24 grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 rounded-2xl overflow-hidden">
-          {stats.map((s, i) => (
-            <div key={i} className="bg-white px-8 py-8 text-center">
-              <p style={{ fontFamily: 'var(--font-display)' }} className="text-4xl font-bold text-primary mb-1 italic">
-                {s.value}
-              </p>
-              <p style={{ fontFamily: 'var(--font-mono)' }} className="text-xs text-gray-400 tracking-widest uppercase">
-                {s.label}
-              </p>
-            </div>
-          ))}
-        </div>
+    
 
       </div>
     </section>
