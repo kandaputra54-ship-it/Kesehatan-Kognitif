@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Phone } from "lucide-react";
 
 export default function Hero({ onStart }) {
   return (
@@ -55,12 +56,13 @@ export default function Hero({ onStart }) {
             >
               Mulai Program
             </button>
+
             <a
-              href="#galeri"
-              className="text-white/60 hover:text-white text-sm font-medium transition-colors flex items-center gap-2"
+              href="#konsultasi"
+              className="group flex items-center gap-3 border-2 border-white/50 hover:border-white text-white px-7 py-4 rounded-xl font-bold text-base transition-all duration-300 backdrop-blur-sm hover:bg-white/10 tracking-wide"
             >
-              Lihat Dokumentasi
-              <span className="text-lg leading-none">↓</span>
+              <Phone size={18} strokeWidth={2} className="opacity-90 group-hover:opacity-100 transition-all group-hover:scale-110 duration-300" />
+              Konsultasi
             </a>
           </div>
         </div>

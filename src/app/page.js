@@ -10,6 +10,7 @@ import Galeri from "@/components/Galeri";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import MMSEWizard from "@/components/MMSEWizard";
+import Konsultasi from "@/components/Konsultasi";
 
 export default function LandingPage() {
   // State untuk mengontrol tampilan halaman
@@ -45,6 +46,7 @@ export default function LandingPage() {
           <Tutorial />
           <Materi />
           <MMSEInfo />
+          <Konsultasi />
           <Galeri />
           {/* Tombol CTA mengarahkan ke Pre-Test */}
           <CTA onStart={() => setView("pre-test")} />
