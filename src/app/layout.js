@@ -21,32 +21,40 @@ const dmMono = DM_Mono({
 });
 
 export const metadata = {
-  title: "SIBO — Sistem Intervensi Berbasis Online Pam",
+  title: "STIMUNO — Sistem Informasi Stimulasi Kognitif, Terapi Kelompok, dan Senam Otak",
   description:
-    "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831). Program stimulasi kognitif berbasis evidence untuk menjaga kesehatan otak dan kebugaran fungsional usia matang.",
-  keywords: ["SIBO", "Sistem Intervensi Berbasis Online Pam", "kognitif", "senam otak", "lansia", "brain gym", "stimulasi kognitif", "kesehatan otak"],
+    "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831). Program stimulasi kognitif, terapi kelompok, dan senam otak berbasis evidence untuk menjaga kesehatan otak dan kebugaran fungsional.",
+  keywords: [
+    "STIMUNO", 
+    "Sistem Informasi Stimulasi Kognitif", 
+    "Terapi Kelompok", 
+    "Senam Otak", 
+    "kognitif", 
+    "lansia", 
+    "brain gym", 
+    "stimulasi kognitif", 
+    "kesehatan otak"
+  ],
   authors: [{ name: "Ns. Ahmad Fahri, S.Kep.,M.Kep" }],
   
   openGraph: {
-    title: "SIBO — Sistem Intervensi Berbasis Online Pam",
-    description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831). Program stimulasi kognitif berbasis evidence.",
+    title: "STIMUNO — Sistem Informasi Stimulasi Kognitif, Terapi Kelompok, dan Senam Otak",
+    description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831). Program stimulasi kognitif, terapi kelompok, dan senam otak berbasis evidence.",
     type: "website",
-    url: "https://sibo.web.id",
-    // TAMBAHKAN INI
+    url: "https://stimuno.web.id",
     images: [
       {
-        url: "/og-image.jpeg", // Nama file di folder public
+        url: "/og-image.jpeg",
         width: 1200,
         height: 630,
-        alt: "SIBO - Sistem Intervensi Berbasis Online Pam",
+        alt: "STIMUNO - Sistem Informasi Stimulasi Kognitif, Terapi Kelompok, dan Senam Otak",
       },
     ],
   },
 
-  // TAMBAHKAN INI JUGA AGAR MUNCUL DI TWITTER/X
   twitter: {
     card: "summary_large_image",
-    title: "SIBO — Sistem Intervensi Berbasis Online Pam",
+    title: "STIMUNO — Sistem Informasi Stimulasi Kognitif, Terapi Kelompok, dan Senam Otak",
     description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831).",
     images: ["/og-image.jpeg"],
   },

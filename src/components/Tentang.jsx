@@ -4,81 +4,159 @@ const misi = [
   {
     tag: "01",
     label: "Edukasi Kognitif",
-    title: "Menjaga Ketajaman Pikiran",
-    desc: "Program kami fokus pada latihan neuroplastisitas untuk memastikan fungsi memori dan kognisi tetap optimal seiring bertambahnya usia.",
-    src: "/tentang1.webp",
+    title: "Ketajaman Pikiran",
+    desc: "Latihan neuroplastisitas untuk menjaga fungsi memori dan kognisi tetap optimal.",
   },
-  
+  {
+    tag: "02",
+    label: "Terapi Kelompok",
+    title: "Bersama Lebih Kuat",
+    desc: "Sesi terapi kelompok yang membangun koneksi sosial dan mengurangi isolasi lansia.",
+  },
+  {
+    tag: "03",
+    label: "Senam Otak",
+    title: "Aktif Setiap Hari",
+    desc: "Latihan fisik dan kognitif terintegrasi, dirancang khusus sesuai kemampuan lansia.",
+  },
+  {
+    tag: "04",
+    label: "Pendampingan Medis",
+    title: "Didampingi Ahlinya",
+    desc: "Setiap program dikembangkan bersama tenaga medis untuk keamanan dan hasil optimal.",
+  },
 ];
-
-
 
 export default function Tentang() {
   return (
-    <section id="tentang" className="py-24 bg-white border-t border-gray-100">
-      <div className="max-w-6xl mx-auto px-8">
+    <section id="tentang" className="py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-6">
+        <div
+          className="relative rounded-[2.5rem] overflow-hidden shadow-2xl min-h-[520px]"
+          style={{
+            backgroundImage: "url('/tentang-bg.jpeg')",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* Overlay: gradien deep purple ke kanan transparan — ikuti pola CTA */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to right, #1A162E/97 0%, #1A162E/80 50%, rgba(91,75,219,0.35) 100%)",
+            }}
+          />
+          {/* Fallback solid untuk pastikan teks terbaca di semua browser */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1A162E]/95 via-[#1A162E]/75 to-[#5B4BDB]/30" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1A162E]/40 via-transparent to-[#1A162E]/50" />
 
-        {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20 pb-10 border-b border-gray-200">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-primary"></span>
-              <p style={{ fontFamily: 'var(--font-mono)' }} className="text-xs tracking-widest uppercase text-primary">
-                Tentang Program
-              </p>
-            </div>
-            <h2 style={{ fontFamily: 'var(--font-display)' }} className="text-4xl md:text-5xl font-bold text-dark-gray leading-tight">
-              Misi & <em>Tujuan</em><br />Program
-            </h2>
-          </div>
-          <p className="text-sm text-gray-500 leading-relaxed max-w-xs font-light">
-            Didesain bersama tenaga medis dan kader kesehatan untuk hasil yang nyata dan berkelanjutan.
-          </p>
-        </div>
+          {/* Decorative glow — warna primary ungu seperti CTA */}
+          <div className="absolute bottom-0 right-0 w-[420px] h-[420px] bg-[#5B4BDB]/20 rounded-full blur-[100px] pointer-events-none -mb-32 -mr-32" />
+          <div className="absolute top-0 left-1/2 w-[300px] h-[300px] bg-[#5B4BDB]/10 rounded-full blur-[80px] pointer-events-none" />
 
-        {/* Zig-zag blocks */}
-        <div className="space-y-24">
-          {misi.map((item, i) => (
-            <div
-              key={i}
-              className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}
-            >
-              {/* Foto */}
-              <div className="relative h-[420px] rounded-2xl overflow-hidden group">
-                <Image
-                  src={item.src}
-                  alt={item.label}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                {/* Tag number pojok */}
-                <span
-                  style={{ fontFamily: 'var(--font-mono)' }}
-                  className="absolute top-5 left-5 text-xs text-white/70 bg-black/30 backdrop-blur-sm px-3 py-1.5 rounded"
+          {/* Content */}
+          <div className="relative z-10 flex flex-col md:flex-row gap-12 p-10 md:p-20">
+
+            {/* KIRI: Header & deskripsi */}
+            <div className="flex-1 flex flex-col justify-between">
+              {/* Badge */}
+              <div>
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold uppercase tracking-[0.2em] mb-6"
+                  style={{
+                    background: "rgba(91,75,219,0.20)",
+                    borderColor: "rgba(91,75,219,0.35)",
+                    color: "rgba(255,255,255,0.90)",
+                  }}
                 >
-                  {item.tag}
-                </span>
+                  <span
+                    className="w-1.5 h-1.5 rounded-full animate-pulse"
+                    style={{ background: "#a78bfa" }}
+                  />
+                  Filosofi & Misi
+                </div>
+
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight tracking-tighter">
+                  Misi{" "}
+                  <span
+                    className="bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(135deg, #e9d5ff 0%, #a78bfa 45%, #7c3aed 100%)",
+                    }}
+                  >
+                    Utama
+                  </span>{" "}
+                  Kami
+                </h2>
+
+                <p className="text-white/60 text-base leading-relaxed max-w-sm border-l border-[#5B4BDB]/50 pl-4">
+                  Didesain bersama tenaga medis untuk menciptakan hasil nyata bagi kesejahteraan lansia.
+                </p>
               </div>
 
-              {/* Teks */}
-              <div className="space-y-5">
-                <p style={{ fontFamily: 'var(--font-mono)' }} className="text-xs tracking-widest uppercase text-primary">
-                  {item.label}
-                </p>
-                <h3 style={{ fontFamily: 'var(--font-display)' }} className="text-3xl md:text-4xl font-bold text-dark-gray leading-snug">
-                  {item.title}
-                </h3>
-                <div className="w-10 h-px bg-gray-200"></div>
-                <p className="text-gray-500 leading-relaxed font-light text-base">
-                  {item.desc}
-                </p>
-              </div>
+              {/* Divider */}
+              <div
+                className="h-px mt-10 hidden md:block"
+                style={{
+                  background:
+                    "linear-gradient(to right, rgba(91,75,219,0.5), transparent)",
+                }}
+              />
             </div>
-          ))}
+
+            {/* KANAN: Misi Cards grid */}
+            <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {misi.map((item, i) => (
+                <div
+                  key={i}
+                  className="group flex flex-col gap-2 p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02]"
+                  style={{
+                    background: "rgba(0,0,0,0.30)",
+                    backdropFilter: "blur(8px)",
+                    borderColor: "rgba(255,255,255,0.08)",
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = "rgba(91,75,219,0.50)";
+                    e.currentTarget.style.background = "rgba(91,75,219,0.15)";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "rgba(0,0,0,0.30)";
+                  }}
+                >
+                  {/* Tag nomor */}
+                  <span
+                    className="text-xs font-bold tracking-widest"
+                    style={{ color: "rgba(167,139,250,0.60)" }}
+                  >
+                    {item.tag}
+                  </span>
+
+                  {/* Label kecil */}
+                  <p
+                    className="text-[10px] tracking-[0.3em] uppercase font-semibold"
+                    style={{ color: "rgba(167,139,250,0.80)" }}
+                  >
+                    {item.label}
+                  </p>
+
+                  {/* Judul */}
+                  <h3 className="text-white font-bold text-base leading-snug">
+                    {item.title}
+                  </h3>
+
+                  {/* Deskripsi singkat */}
+                  <p className="text-white/55 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+          </div>
         </div>
-
-    
-
       </div>
     </section>
   );

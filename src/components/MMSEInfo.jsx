@@ -6,46 +6,74 @@ const aspek = [
 ];
 
 const skala = [
-  { range: "24 – 30", label: "Normal", color: "#22c55e", bg: "rgba(34,197,94,0.08)" },
-  { range: "18 – 23", label: "Gangguan Ringan", color: "#f59e0b", bg: "rgba(245,158,11,0.08)" },
-  { range: "0 – 17", label: "Gangguan Berat", color: "#ef4444", bg: "rgba(239,68,68,0.08)" },
+  { range: "24 – 30", label: "Normal", color: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0" },
+  { range: "18 – 23", label: "Gangguan Ringan", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
+  { range: "0 – 17", label: "Gangguan Berat", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" },
 ];
 
 export default function MMSEInfo() {
   return (
-    <section className="py-24 bg-background border-t border-gray-100">
+    <section className="py-24 bg-white border-t border-neutral-100">
       <div className="max-w-6xl mx-auto px-8">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-10 border-b border-gray-200">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-10 border-b border-neutral-100">
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-px bg-primary"></span>
-              <p style={{ fontFamily: 'var(--font-mono)' }} className="text-xs tracking-widest uppercase text-primary">
-                Instrumen Evaluasi
-              </p>
+            <div className="flex items-center gap-2 mb-5">
+              <div
+                className="flex items-center gap-2 rounded-full px-4 py-1.5 border"
+                style={{ background: "rgba(91,75,219,0.08)", borderColor: "rgba(91,75,219,0.25)" }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#5B4BDB" }} />
+                <p style={{ fontFamily: "var(--font-mono)" }} className="text-[10px] tracking-[0.3em] uppercase font-medium" >
+                  <span style={{ color: "#5B4BDB" }}>Instrumen Evaluasi</span>
+                </p>
+              </div>
             </div>
-            <h2 style={{ fontFamily: 'var(--font-display)' }} className="text-4xl md:text-5xl font-bold text-dark-gray leading-tight">
-              Evaluasi <em>MMSE</em><br />Terstandar
+            <h2 style={{ fontFamily: "var(--font-display)" }} className="text-4xl md:text-5xl font-bold text-neutral-900 leading-tight tracking-tighter">
+              Evaluasi{" "}
+              <span className="bg-clip-text text-transparent"
+                style={{ backgroundImage: "linear-gradient(135deg, #7c3aed, #a78bfa)" }}>
+                MMSE
+              </span>
+              <br />Terstandar
             </h2>
           </div>
-          <p className="text-sm text-gray-500 leading-relaxed max-w-xs font-light">
+          <p className="text-sm text-neutral-500 leading-relaxed max-w-xs font-light">
             Mini-Mental State Examination — instrumen klinis yang digunakan secara global untuk mengukur fungsi kognitif secara objektif.
           </p>
         </div>
 
         {/* Aspek grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
           {aspek.map((item) => (
-            <div key={item.tag} className="flex gap-5 p-6 rounded-2xl border border-gray-100 bg-white hover:border-primary/20 hover:shadow-sm transition-all duration-300">
-              <span style={{ fontFamily: 'var(--font-mono)' }} className="text-xs text-primary/50 mt-0.5 shrink-0">{item.tag}</span>
+            <div
+              key={item.tag}
+              className="flex gap-5 p-6 rounded-2xl border bg-white transition-all duration-300 group"
+              style={{ borderColor: "#f3f4f6" }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = "rgba(167,139,250,0.5)";
+                e.currentTarget.style.boxShadow = "0 2px 16px rgba(91,75,219,0.08)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = "#f3f4f6";
+                e.currentTarget.style.boxShadow = "none";
+              }}
+            >
+              <span
+                style={{ fontFamily: "var(--font-mono)", color: "rgba(167,139,250,0.7)" }}
+                className="text-xs mt-0.5 shrink-0 font-bold transition-colors duration-300 group-hover:text-[#5B4BDB]"
+              >
+                {item.tag}
+              </span>
               <div>
-                <p className="font-semibold text-dark-gray mb-1">{item.label}</p>
-                <p className="text-sm text-gray-400 font-light leading-relaxed">{item.desc}</p>
+                <p className="font-semibold text-neutral-800 mb-1 transition-colors duration-300 group-hover:text-[#5B4BDB]">{item.label}</p>
+                <p className="text-sm text-neutral-400 font-light leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
