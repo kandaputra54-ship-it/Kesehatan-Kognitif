@@ -6,72 +6,111 @@ const aspek = [
 ];
 
 const skala = [
-  { range: "24 – 30", label: "Normal", color: "#16a34a", bg: "#f0fdf4", border: "#bbf7d0" },
-  { range: "18 – 23", label: "Gangguan Ringan", color: "#d97706", bg: "#fffbeb", border: "#fde68a" },
-  { range: "0 – 17", label: "Gangguan Berat", color: "#dc2626", bg: "#fef2f2", border: "#fecaca" },
+  { range: "24 – 30", label: "Normal", accent: "#4ade80", glow: "rgba(74,222,128,0.20)" },
+  { range: "18 – 23", label: "Gangguan Ringan", accent: "#fbbf24", glow: "rgba(251,191,36,0.20)" },
+  { range: "0 – 17", label: "Gangguan Berat", accent: "#f87171", glow: "rgba(248,113,113,0.20)" },
 ];
 
 export default function MMSEInfo() {
   return (
-    <section className="py-24 bg-white border-t border-neutral-100">
-      <div className="max-w-6xl mx-auto px-8">
+    <section className="py-24 bg-background border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 pb-10 border-b border-neutral-100">
-          <div>
-            <div className="flex items-center gap-2 mb-5">
-              <div
-                className="flex items-center gap-2 rounded-full px-4 py-1.5 border"
-                style={{ background: "rgba(91,75,219,0.08)", borderColor: "rgba(91,75,219,0.25)" }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#5B4BDB" }} />
-                <p style={{ fontFamily: "var(--font-mono)" }} className="text-[10px] tracking-[0.3em] uppercase font-medium" >
-                  <span style={{ color: "#5B4BDB" }}>Instrumen Evaluasi</span>
-                </p>
-              </div>
-            </div>
-            <h2 style={{ fontFamily: "var(--font-display)" }} className="text-4xl md:text-5xl font-bold text-neutral-900 leading-tight tracking-tighter">
-              Evaluasi{" "}
-              <span className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(135deg, #7c3aed, #a78bfa)" }}>
-                MMSE
-              </span>
-              <br />Terstandar
-            </h2>
+        <div className="mb-16">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border text-xs font-bold uppercase tracking-[0.2em] mb-6"
+            style={{
+              background: "rgba(91,75,219,0.20)",
+              borderColor: "rgba(91,75,219,0.35)",
+              color: "rgba(255,255,255,0.90)",
+            }}
+          >
+            <span
+              className="w-1.5 h-1.5 rounded-full animate-pulse"
+              style={{ background: "#a78bfa" }}
+            />
+            Instrumen Evaluasi
           </div>
-          <p className="text-sm text-neutral-500 leading-relaxed max-w-xs font-light">
-            Mini-Mental State Examination — instrumen klinis yang digunakan secara global untuk mengukur fungsi kognitif secara objektif.
-          </p>
-        </div>
 
-        {/* Aspek grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-          {aspek.map((item) => (
-            <div
-              key={item.tag}
-              className="flex gap-5 p-6 rounded-2xl border bg-white transition-all duration-300 group"
-              style={{ borderColor: "#f3f4f6" }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = "rgba(167,139,250,0.5)";
-                e.currentTarget.style.boxShadow = "0 2px 16px rgba(91,75,219,0.08)";
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = "#f3f4f6";
-                e.currentTarget.style.boxShadow = "none";
+          <h2 className="text-4xl md:text-5xl font-black text-black leading-tight tracking-tighter">
+            Evaluasi{" "}
+            <span
+              className="bg-clip-text text-transparent"
+              style={{
+                backgroundImage:
+                  "linear-gradient(135deg,  #a78bfa 45%, #7c3aed 100%)",
               }}
             >
-              <span
-                style={{ fontFamily: "var(--font-mono)", color: "rgba(167,139,250,0.7)" }}
-                className="text-xs mt-0.5 shrink-0 font-bold transition-colors duration-300 group-hover:text-[#5B4BDB]"
-              >
-                {item.tag}
-              </span>
-              <div>
-                <p className="font-semibold text-neutral-800 mb-1 transition-colors duration-300 group-hover:text-[#5B4BDB]">{item.label}</p>
-                <p className="text-sm text-neutral-400 font-light leading-relaxed">{item.desc}</p>
-              </div>
+              MMSE
+            </span>{" "}
+            Terstandar
+            <br />
+            <span className="font-light text-black text-3xl md:text-4xl">
+              Mini-Mental State Examination
+            </span>
+          </h2>
+        </div>
+
+        {/* Wrapper card — sama seperti Tentang.jsx */}
+        <div
+          className="relative rounded-[2.5rem] overflow-hidden shadow-2xl"
+          style={{
+            background: "linear-gradient(135deg, #1A162E 0%, #16123a 100%)",
+            border: "1px solid rgba(91,75,219,0.20)",
+          }}
+        >
+          {/* Decorative glow */}
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#5B4BDB]/15 rounded-full blur-[100px] pointer-events-none -mb-32 -mr-32" />
+          <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-[#5B4BDB]/10 rounded-full blur-[80px] pointer-events-none -mt-20 -ml-20" />
+
+          <div className="relative z-10 p-8 md:p-14">
+
+            {/* Aspek Cards grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+              {aspek.map((item, i) => (
+                <div
+                  key={item.tag}
+                  className="group flex flex-col gap-2 p-5 rounded-2xl border transition-all duration-300 hover:scale-[1.02]"
+                  style={{
+                    background: "rgba(0,0,0,0.30)",
+                    backdropFilter: "blur(8px)",
+                    borderColor: "rgba(255,255,255,0.08)",
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.borderColor = "rgba(91,75,219,0.50)";
+                    e.currentTarget.style.background = "rgba(91,75,219,0.15)";
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+                    e.currentTarget.style.background = "rgba(0,0,0,0.30)";
+                  }}
+                >
+                  <span
+                    className="text-xs font-bold tracking-widest"
+                    style={{ color: "rgba(167,139,250,0.60)" }}
+                  >
+                    {item.tag}
+                  </span>
+                  <h3 className="text-white font-bold text-base leading-snug">
+                    {item.label}
+                  </h3>
+                  <p className="text-white/55 text-sm leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Divider */}
+            <div
+              className="h-px mb-10"
+              style={{
+                background:
+                  "linear-gradient(to right, rgba(91,75,219,0.5), transparent)",
+              }}
+            />
+          </div>
         </div>
 
       </div>

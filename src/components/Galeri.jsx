@@ -4,12 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 
 const fotoKegiatan = [
+  
   { src: "/galeri/1.jpeg", alt: "Aktivitas Senam Pagi", title: "Terapi Fisik", tag: "01" },
   { src: "/galeri/2.jpeg", alt: "Sesi Diskusi Kelompok", title: "Stimulasi Kognitif", tag: "02" },
   { src: "/galeri/3.jpeg", alt: "Pengecekan Kesehatan", title: "Evaluasi Klinis", tag: "03" },
   { src: "/galeri/4.jpeg", alt: "Pelatihan Kader", title: "Edukasi Masyarakat", tag: "04" },
   { src: "/galeri/5.jpeg", alt: "Latihan Koordinasi", title: "Dokumentasi", tag: "05" },
   { src: "/galeri/6.jpeg", alt: "Dokumentasi Program", title: "Kegiatan Lapangan", tag: "06" },
+  { src: "/mmse.jpeg",     alt: "Aktivitas Program", title: "Aktivitas Program", tag: "07" },
+  { src: "/8.jpeg",        alt: "Aktivitas Program", title: "Kegiatan Lapangan", tag: "08" },
+  { src: "/9.jpeg", alt: "Dokumentasi Program", title: "Kegiatan Lapangan", tag: "09" },
 ];
 
 export default function Galeri() {
@@ -62,7 +66,7 @@ export default function Galeri() {
               </div>
               <h2 style={{ fontFamily: "var(--font-display)" }} className="text-4xl md:text-5xl font-bold text-neutral-900 leading-tight tracking-tighter">
                 Galeri{" "}
-                <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, #0891b2, #22d3ee)" }}>
+                <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(135deg, #a78bfa 45%, #7c3aed 100%)" }}>
                   Kegiatan
                 </span>
                 <br />Lapangan
