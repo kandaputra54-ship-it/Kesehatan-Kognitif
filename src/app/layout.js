@@ -44,7 +44,7 @@ export const metadata = {
     url: "https://stimuno.web.id",
     images: [
       {
-        url: "/og-image.jpeg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "STIMUNO - Sistem Informasi Stimulasi Kognitif, Terapi Kelompok, dan Senam Otak",
@@ -56,7 +56,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "STIMUNO — Sistem Informasi Stimulasi Kognitif, Terapi Kelompok, dan Senam Otak",
     description: "Ns. Ahmad Fahri, S.Kep.,M.Kep (NPM: 2506580831).",
-    images: ["/og-image.jpeg"],
+    images: ["/og-image.jpg"],
   },
 };
 
