@@ -43,7 +43,7 @@ function buildWAMessage({ testType, userData, responses, totalScore }) {
   const now = new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "long", year: "numeric" });
 
    const lines = [
-    `*[ HASIL MMSE - sibo.web.id ]*`,
+    `*[ HASIL MMSE - stimuno.web.id ]*`,
     `Tanggal : ${now}`,
     ``,
     `*-- IDENTITAS RESPONDEN --*`,
@@ -58,7 +58,7 @@ function buildWAMessage({ testType, userData, responses, totalScore }) {
     `*Total Skor : ${totalScore} / 30*`,
     `Interpretasi: ${interp.label}`,
     ``,
-    `Generate by sibo.web.id`,
+    `Generate by stimuno.web.id`,
   ];
 
   return encodeURIComponent(lines.join("\n"));
@@ -91,7 +91,7 @@ async function generatePDF({ testType, userData, responses, totalScore }) {
   doc.setTextColor(255, 255, 255);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(16);
-  doc.text("sibo.web.id", 14, 12);
+  doc.text("stimuno.web.id", 14, 12);
 
   doc.setFont("helvetica", "normal");
   doc.setFontSize(8);
@@ -305,7 +305,7 @@ async function generatePDF({ testType, userData, responses, totalScore }) {
   doc.setFont("helvetica", "normal");
   doc.setFontSize(7);
   doc.setTextColor(148, 163, 184);
-  doc.text("Dokumen ini digenerate otomatis oleh sibo.web.id · Mini-Mental State Examination (MMSE)", 14, footerY);
+  doc.text("Dokumen ini digenerate otomatis oleh stimuno.web.id · Mini-Mental State Examination (MMSE)", 14, footerY);
   doc.text(`Halaman 1`, W - 14, footerY, { align: "right" });
 
   // ── Save ──
@@ -389,7 +389,7 @@ export default function MMSEResultCard({ testType, userData, responses, totalSco
               <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
             </svg>
           </div>
-          <span className="text-xs font-bold text-gray-800 tracking-tight">sibo.web.id</span>
+          <span className="text-xs font-bold text-gray-800 tracking-tight">stimuno.web.id</span>
         </div>
         <span
           className="text-[10px] font-bold px-2.5 py-1 rounded-full border uppercase tracking-wide"
@@ -584,7 +584,7 @@ export default function MMSEResultCard({ testType, userData, responses, totalSco
 
       {/* Footer note */}
       <p className="text-center text-[9px] text-gray-300 font-medium pb-1">
-        Dokumen digenerate oleh · <span className="text-gray-400 font-bold">sibo.web.id</span>
+        Dokumen digenerate oleh · <span className="text-gray-400 font-bold">stimuno.web.id</span>
       </p>
     </div>
   );

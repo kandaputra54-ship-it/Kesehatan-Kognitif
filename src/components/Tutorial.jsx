@@ -8,7 +8,7 @@ export default function Tutorial() {
   const videoSource = "https://drive.google.com/file/d/1DH7fVaFMcOOFhRXk7xQp4yV7USH_YAhK/preview";
 
   const steps = [
-    { no: "01", title: "Pahami Alur", desc: "Tonton video untuk mengerti cara navigasi menu dan fitur utama SIBO." },
+    { no: "01", title: "Pahami Alur", desc: "Tonton video untuk mengerti cara navigasi menu dan fitur utama STIMUNO." },
     { no: "02", title: "Isi Pengkajian", desc: "Ikuti petunjuk pengisian MMSE yang benar untuk hasil yang akurat." },
     { no: "03", title: "Implementasi", desc: "Gunakan materi stimulasi otak sesuai dengan hasil pengkajian kognitif." },
   ];
@@ -45,7 +45,7 @@ export default function Tutorial() {
             {!isReady ? (
               <div className="relative w-full h-full">
                 <Image
-                  src="/tutorial.webp" alt="Tutorial SIBO Thumbnail" fill
+                  src="/tutorial.webp" alt="Tutorial STIMUNO Thumbnail" fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-105" priority
                 />
                 <div className="absolute inset-0 bg-neutral-900/10 group-hover:bg-neutral-900/25 transition-colors duration-300" />
