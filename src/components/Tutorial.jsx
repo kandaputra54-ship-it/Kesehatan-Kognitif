@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Tutorial() {
   const [isReady, setIsReady] = useState(false);
 
-  const videoSource = "https://drive.google.com/file/d/1DH7fVaFMcOOFhRXk7xQp4yV7USH_YAhK/preview";
+  const videoSource = "https://drive.google.com/file/d/1muFldCfo9B7gpXeDOQqxWJfZUP91B6tL/preview";
 
   const steps = [
     { no: "01", title: "Pahami Alur", desc: "Tonton video untuk mengerti cara navigasi menu dan fitur utama STIMUNO." },
